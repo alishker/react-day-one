@@ -13,7 +13,7 @@ export default class App extends Component {
     {
       id: 2,
       title: "write a django blog",
-      completed: false
+      completed: true
     },
     {
       id: 3,
