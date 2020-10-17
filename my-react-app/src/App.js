@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Header from './components/layout/Header'
 import Todos from './components/Todos'
 import './App.css'
 
@@ -13,7 +14,7 @@ export default class App extends Component {
     {
       id: 2,
       title: "write a django blog",
-      completed: false
+      completed: true
     },
     {
       id: 3,
@@ -22,13 +23,32 @@ export default class App extends Component {
     }]
   }
 
+  markComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed
 
+        }
+        return todo;
+      })
+    });
+  }
+  delTodo = (id) => {
+    this.setState({
+      todos: [...this.state.todos.filter(todo => todo.id !== id
+
+      )]
+    });
+
+  }
 
 
   render() {
     return (
       <div className="App">
-        <Todos todos={this.state.todos} />
+        <Header />
+        <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
       </div>
 
     );
